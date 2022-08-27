@@ -1,21 +1,29 @@
 import "./coin.css";
 
-const Coin = ({ name, image, symbol, price, supply }) => {
-  // name symbol image max_supply current_price
+const Coin = ({ rank, name, image, symbol, price, cap ,change }) => {
   let upper = symbol.toUpperCase();
-  let currPrice = Math.floor(price);
-  let currSupply = Math.floor(supply);
-  
+  let currPrice = price.toFixed(2);
+
   return (
-    <div className="card" style={{ width: "15rem" }}>
-      <div className="card-body">
-        <img src={image} alt="cypto" />
-        <h5 className="card-title">{name}</h5>
-        <p>Symbol:{upper}</p>
-        <p>Price:${currPrice}</p>
-        <p>Max Supply:{currSupply}</p>
-      </div>
-    </div>
+    <table className="table">
+      <tbody>
+        <tr>
+          <th scope="row">{rank}</th>
+          <td>
+            <img src={image} alt="crypto" />
+            {name}
+          </td>
+          <td>{upper}</td>
+          <td col-span="2">{currPrice}</td>
+          <td>{cap}</td>
+          {change < 0 ? (
+            <td className="text-danger" style={{fontWeight: "bold"}}>{change.toFixed(2)}%</td>
+          ) : (
+            <td className="text-success" style={{fontWeight: "bold"}}>{change.toFixed(2)}%</td>
+          )}
+        </tr>
+      </tbody>
+    </table>
   );
 };
 

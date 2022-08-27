@@ -7,10 +7,10 @@ const CoinRender = () => {
 
   const fetchData = async () => {
     const res = await fetch(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=market_cap_desc&per_page=5&page=1&sparkline=false"
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=market_cap_desc&per_page=10&page=1&sparkline=false"
     );
     const data = await res.json();
-    // console.log(data); retrieves coin data
+    console.log(data);
     setCoin(data);
   };
 
@@ -19,22 +19,22 @@ const CoinRender = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div>
       {coins.map((coin) => {
         // console.log(coin.symbol);
         return (
-          <div className="row">
-            <div className="col">
+            <div>
               <Coin
                 key={coin.id}
+                rank={coin.market_cap_rank}
                 name={coin.name}
                 image={coin.image}
                 symbol={coin.symbol}
                 price={coin.current_price}
-                supply={coin.total_supply}
+                cap={coin.market_cap}
+                change={coin.price_change_percentage_24h}
               />
             </div>
-          </div>
         );
       })}
     </div>

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Header from "./components/header";
 import CoinRender from "./components/CoinRender";
 import Search from "./components/Search";
+import CoinHeader from "./components/CoinHeader";
 import Footer from "./components/Footer";
 
 const App = () => {
@@ -11,11 +12,18 @@ const App = () => {
   return (
     <div className="app">
       <Header />
-      <div>
-        <Search coin={coins} onFormSubmit={search} />
-          <CoinRender />
+      <Search coin={coins} onFormSubmit={search} />
+      <div className="container">
+        <div className="row">
+          <table className="table">
+            <CoinHeader />
+          </table>
+          <div className="col-sm">
+            <CoinRender />
+          </div>
+        </div>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
